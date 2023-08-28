@@ -23,7 +23,7 @@ export default {
         <input type="text"
         v-model="store.searchParam">
         <button type="button" class="btn btn-primary"
-        @click="fetchMoviesByName">
+        @click="fetchMoviesByName()">
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
       </div>

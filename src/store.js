@@ -3,14 +3,14 @@ import { reactive } from "vue";
 
 export const store = reactive({
   searchParam: "",
-  moviesByNames: [],
+  moviesByNames: {},
 });
 
 export function fetchMoviesByName(){
   const url = "https://api.themoviedb.org/3/search/movie";
 
-  console.log(searchParam);
-  console.log(moviesByNames);
+  console.log(store.searchParam);
+  console.log(store.moviesByNames);
 
   axios.get(url, {
     params: {
@@ -21,9 +21,7 @@ export function fetchMoviesByName(){
     .then((response)=>{
       store.moviesByNames = response.data.results;
       console.log("Funzione ricerca film per nome startata")
-      console.log(moviesByNames)
+      console.log(store.searchParam);
+      console.log(store.moviesByNames);
   });
-  
-  console.log(searchParam);
-  console.log(moviesByNames);
 }
