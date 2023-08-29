@@ -43,9 +43,9 @@ export default {
         <form class="d-flex" role="search">
           <input class="search-box form-control me-2" type="search" placeholder="Movies, TV shows & more" aria-label="Search"
           v-model="store.searchParam" autofocus
-          @keyup.enter="fetchMoviesByName(`https://api.themoviedb.org/3/search/tv` , `https://api.themoviedb.org/3/search/movie`)">
+          @keyup.enter="fetchMoviesByName(`https://api.themoviedb.org/3/search/multi`)">
           <button class="btn btn-outline-danger" type="button"
-          @click="fetchMoviesByName(`https://api.themoviedb.org/3/search/tv` , `https://api.themoviedb.org/3/search/movie`)">Search</button>
+          @click="fetchMoviesByName(`https://api.themoviedb.org/3/search/multi`)">Search</button>
         </form>
       </div>
     </div>

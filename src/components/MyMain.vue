@@ -15,7 +15,7 @@ export default {
         fetchMoviesByName,
     },
     mounted() {
-      fetchMoviesByName(`https://api.themoviedb.org/3/search/multi`)
+      fetchMoviesByName(`https://api.themoviedb.org/3/discover/movie`,`https://api.themoviedb.org/3/discover/tv`)
     },
     components: { LangFlag }
 };

@@ -35,6 +35,7 @@ export function fetchMoviesByName(urls){
   */
 
   console.log("Funzione fetchMovies startata");
+  console.log(urls)
 
   const requests = urls.map((url) => axios.get(url, {
     params: {
