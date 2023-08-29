@@ -16,4 +16,7 @@ export default {
 </template>
 
 <style lang="scss">
+*{
+  font-family: 'Bebas Neue', sans-serif;
+}
 </style>
