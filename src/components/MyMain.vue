@@ -1,23 +1,28 @@
 <script>
+import LangFlag from "vue-lang-code-flags";
 import { store ,  fetchMoviesByName } from "../store";
 
 export default {
-  data() {
-    return {
-      store
-    }
+  components: {
+    LangFlag,
   },
-  methods: {
-    fetchMoviesByName,
-  },
-  mounted(){
-    
-  },
+    data() {
+        return {
+            store
+        };
+    },
+    methods: {
+        fetchMoviesByName,
+    },
+    mounted() {
+      fetchMoviesByName(`https://api.themoviedb.org/3/search/multi`)
+    },
+    components: { LangFlag }
 };
 </script>
 
 <template>
-  <div class="container pt-3">
+  <div class="container">
     <div class="row g-5 d-flex justify-content-center">
       <div class="col-3"
       v-for="singleMovie in store.moviesByNames">
@@ -32,7 +37,7 @@ export default {
           <ul class="list-group list-group-flush">
             <li class="list-group-item"><strong>Title:</strong> {{ singleMovie.title }}</li>
             <li class="list-group-item"><strong>Original title:</strong> {{ singleMovie.original_title }}</li>
-            <li class="list-group-item"><strong>Original Language:</strong> {{ singleMovie.original_language }}</li>
+            <li class="list-group-item"><strong>Original Language:</strong> <lang-flag :iso="`${singleMovie.original_language}`"></lang-flag></li>
             <li class="list-group-item"><strong>Scored:</strong> {{ Math.round( singleMovie.vote_average / 2 ) }}/5 ({{ singleMovie.vote_count }} reviews)</li>
           </ul>
         </div>
@@ -44,7 +49,11 @@ export default {
 <style lang="scss" scoped>
 @use "../scss/partials/variables" as *;
 .container{
-  margin-top: 75px;
+  margin-top: 100px;
+  padding-bottom: 100px;
+  .card:hover{
+    transform: scale(107.5%);
+  }
   .card-body{
   height: $bs-card-height;
     .card-title {
