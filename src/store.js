@@ -3,88 +3,42 @@ import { reactive } from "vue";
 
 export const store = reactive({
   searchParam: "futuro",
-  moviesByNames: {},
-  moviesList: [],
-  seriesList: [],
+  moviesByNames: [],
+  isLoading: false,
 });
 
 export function fetchMoviesByName(urls){
-  /*
-  const url = "https://api.themoviedb.org/3/search/movie";
+  store.isLoading = true;
 
-  //console.log(store.searchParam);
-  //console.log(store.moviesByNames);
-
-  axios.get(url, {
-    params: {
-      api_key: "1a54566c4b622d6f7844dcfb60ce2da5",
-      query: `${store.searchParam}`,
-      language: "it-IT",
-    }
-  })
-    .then((response)=>{
-      //console.log(url)
-      store.moviesByNames = response.data.results;
-      //console.log("Funzione ricerca film per nome startata")
-      //console.log(store.searchParam);
-      //console.log(store.moviesByNames);
-  });
-
-  let urlMovies = `https://api.themoviedb.org/3/search/tv`;
-  let urlSeries = `https://api.themoviedb.org/3/search/movie`;
-  */
-
-  console.log("Funzione fetchMovies startata");
-  console.log(this.urls)
-  console.log(store.moviesByNames)
-
-    console.log("Funzione fetchMovies startata");
-    console.log(urls); // Use the passed 'urls' parameter
-
-    const requests = urls.map((url) =>
-      axios.get(url, {
-        params: {
-          api_key: "1a54566c4b622d6f7844dcfb60ce2da5",
-          query: `${store.searchParam}`,
-          language: "it-IT",
-        },
-      })
-    );
-
-    console.log(`Gli url sono: ${requests}`);
-
-    axios.all(requests).then((responses) => {
-      this.moviesByNames = [];
-
-      responses.forEach((resp) => {
-        store.moviesByNames = resp.data.results;
-      });
-    });
-
-/*
-  axios.all([
-    axios.get(urlMovies, {
+  const requests = urls.map((url) =>
+    axios.get(url, {
       params: {
         api_key: "1a54566c4b622d6f7844dcfb60ce2da5",
         query: `${store.searchParam}`,
         language: "it-IT",
-      }}),
-      axios.get(urlSeries, {
-        params: {
-          api_key: "1a54566c4b622d6f7844dcfb60ce2da5",
-          query: `${store.searchParam}`,
-          language: "it-IT",
-      }}),
-    ])
-    .then(axios.spread((urlMovies, urlSeries) => {
-      console.log("Axios multipla startata")
-      store.moviesList = urlMovies.data.results;
-      store.seriesList = urlSeries.data.results;
-      console.log(store.moviesList)
-      console.log(store.seriesList)
-    }))
-    .catch((error) => {
-      next(error);
+      },
+    })
+  );
+  
+  console.log(requests)
+  axios.all(requests).then((responses) => {
+    store.moviesByNames = [];
+
+    responses.forEach((resp) => {
+      store.moviesByNames.push(...resp.data.results);
+
+      setTimeout(() => {
+        store.isLoading = false;
+      }, 500);
     });
-    */
+  });
+};
+
+export function reviewsVote(vote) {
+  const voteNum = parseFloat(vote);
+  const voteInFifths = voteNum / 2;
+  const votePercentage = (voteInFifths / 5) * 100;
+  const votePercentageRounded = `${((votePercentage / 10) * 10)}%`;
+  console.log(votePercentageRounded)
+  return votePercentageRounded;
 }
