@@ -8,14 +8,15 @@ export default {
   },
     data() {
         return {
-            store
+            store,
+            urls: ["https://api.themoviedb.org/3/discover/movie","https://api.themoviedb.org/3/discover/tv"],
         };
     },
     methods: {
         fetchMoviesByName,
     },
     mounted() {
-      fetchMoviesByName(`https://api.themoviedb.org/3/discover/movie`,`https://api.themoviedb.org/3/discover/tv`)
+      fetchMoviesByName(this.urls)
     },
     components: { LangFlag }
 };

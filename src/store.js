@@ -35,27 +35,31 @@ export function fetchMoviesByName(urls){
   */
 
   console.log("Funzione fetchMovies startata");
-  console.log(urls)
+  console.log(this.urls)
+  console.log(store.moviesByNames)
 
-  const requests = urls.map((url) => axios.get(url, {
-    params: {
-      aapi_key: "1a54566c4b622d6f7844dcfb60ce2da5",
-      query: `${store.searchParam}`,
-      language: "it-IT"
-    }
-  }));
+    console.log("Funzione fetchMovies startata");
+    console.log(urls); // Use the passed 'urls' parameter
 
-  console.log(`Gli url sono: ${requests}`);
+    const requests = urls.map((url) =>
+      axios.get(url, {
+        params: {
+          api_key: "1a54566c4b622d6f7844dcfb60ce2da5",
+          query: `${store.searchParam}`,
+          language: "it-IT",
+        },
+      })
+    );
 
-  axios.all(requests)
-  .then((responses) => {
-    responses.forEach((resp) => {
-      store.moviesList = resp.data.results;
-      store.seriesList = resp.data.results;
-      console.log(store.moviesList);
-      console.log(store.seriesList);
+    console.log(`Gli url sono: ${requests}`);
+
+    axios.all(requests).then((responses) => {
+      this.moviesByNames = [];
+
+      responses.forEach((resp) => {
+        store.moviesByNames = resp.data.results;
+      });
     });
-  });
 
 /*
   axios.all([
