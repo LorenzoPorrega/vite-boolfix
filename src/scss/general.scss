@@ -1,3 +1,8 @@
+@import "./partials/_variables.scss";
 @import "bootstrap";
 @import '@fortawesome/fontawesome-free/css/all.min.css';
-@import "./partials/_variables.scss"
+
+
+body{
+  --bs-body-bg: rgb(26, 26, 26);
+}

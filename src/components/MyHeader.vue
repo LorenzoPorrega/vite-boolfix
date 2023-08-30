@@ -17,7 +17,7 @@ export default {
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-lg fixed-top bg-black" data-bs-theme="dark">
+  <nav class="navbar navbar-expand-xl fixed-top bg-black" data-bs-theme="dark">
     <div class="container-fluid px-5">
       <img class="logo" src="../assets/img/booflix-logo.png" alt="Bootstrap" width="125" height="50">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
