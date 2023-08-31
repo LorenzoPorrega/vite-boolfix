@@ -37,13 +37,13 @@ export default {
           :alt="singleMovie.title">
           <div class="on-hover-absolute position-absolute h-100 2-100">
             <div class="card-body text-white">
-              <h5 class="card-title"><strong>{{ singleMovie.title ? singleMovie.title : "Tiolo sconosciuto"}}</strong></h5>
+              <h5 class="card-title"><strong>{{ singleMovie.title ?? singleMovie.name ?? "Titolo sconosciuto"}}</strong></h5>
               <p class="card-text text-wrap overflow-hidden">{{ singleMovie.overview ? singleMovie.overview : "Nessuna descrizione disponibile."}}</p>
             </div>
             <ul class="list-group list-group-flush position-absolute">
               <!--<li class="list-group-item text-white"><strong>Titolo:</strong> {{ singleMovie.title }}</li>-->
               <li class="list-group-item text-white"
-              :class="singleMovie.original_title ? '': 'fst-italic'"><strong>Titolo Originale:</strong> {{ singleMovie.original_title ? singleMovie.title : "Nessun titolo originale fornito" }}</li>
+              :class="singleMovie.original_title ? '': 'fst-italic'"><strong>Titolo Originale:</strong> {{ singleMovie.original_title ?? singleMovie.original_name ?? "Nessun titolo originale fornito" }}</li>
               <li class="list-group-item text-white"><strong>Lingua originale:</strong> <lang-flag class="border" :iso="`${singleMovie.original_language ? singleMovie.original_language.toLowerCase() : 'un'}`"></lang-flag></li>
               <!--<li class="list-group-item text-white"><strong>Voto: </strong> {{ Math.round( singleMovie.vote_average / 2 ) }}/5 ({{ singleMovie.vote_count }} recensioni)</li>-->
               <li class="list-group-item"><strong class="text-white">Voto:</strong>
